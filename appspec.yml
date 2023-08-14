@@ -1,14 +1,10 @@
 version: 0.0
 os: linux
 files:
- - source: .
-   destination: /home/ec2-user/app
+  - source: /
+    destination: /home/ubuntu/django-aws_cicd
 hooks:
+  BeforeInstall:
+      - location: scripts/before_install.sh
   AfterInstall:
-   - location: scripts/install_app_dependencies
-     timeout: 300
-     runas: root
-  ApplicationStart:
-   - location: scripts/start_server
-     timeout: 300
-     runas: root
+      - location: scripts/after_install.sh
